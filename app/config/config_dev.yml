@@ -1,0 +1,36 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    router:
+        resource: "%kernel.root_dir%/config/routing_dev.yml"
+        strict_requirements: true
+    profiler: { only_exceptions: false }
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
+
+monolog:
+    handlers:
+        main:
+            type: rotating_file
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            channels: [!event]
+        api_ws:
+            type: rotating_file
+            path: "%kernel.logs_dir%/api_%kernel.environment%.log"
+            level: debug
+            channels: [api_ws]
+        foo:
+            type: rotating_file
+            path: "%kernel.logs_dir%/foo_%kernel.environment%.log"
+            level: debug
+            channels: [foo]
+        console:
+            type:   console
+            channels: [!event, !doctrine]
+
+assetic:
+    use_controller: true
