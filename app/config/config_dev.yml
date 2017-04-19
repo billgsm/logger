@@ -17,6 +17,7 @@ monolog:
             type: rotating_file
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
+            formatter: talkative_formatter
             channels: [!event]
         api_ws:
             type: rotating_file
