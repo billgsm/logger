@@ -19,3 +19,9 @@ services:
         class: Monolog\Processor\IntrospectionProcessor
         tags:
             - { name: monolog.processor }
+
+    talkative_formatter:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            # Adds the file:line_number where the log is called
+            - "[%%datetime%%] %%channel%%.%%level_name%%: [%%extra.file%%:%%extra.line%%] %%message%% %%context%% %%extra%%\n"
